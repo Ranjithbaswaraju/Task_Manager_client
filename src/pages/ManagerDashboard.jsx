@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import Logout from "../components/logout";
 import axios from "axios";
 import { baseURL } from "../App";
+import {Link} from "react-router-dom"
 
 export default function ManagerDashboard({ setUser }) {
   const [tickets, setTickets] = useState([]);
@@ -56,7 +57,7 @@ export default function ManagerDashboard({ setUser }) {
       const res = await axios.get(`${baseURL}/ticket/allTickets`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setTickets(res.data.data);
+      setTickets(res.data.data || []);
       toast.success(res.data.data.message);
     } catch (error) {
       console.log(error);
