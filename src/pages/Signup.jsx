@@ -33,7 +33,8 @@ export default function Signup() {
       navigate("/login");
     } catch (error) {
       console.log(error.response);
-      toast.error(error.response.data.message);
+     toast.error(
+    error.response?.data?.message || "Signup failed. Please try again.")
     }
   };
 
